@@ -62,7 +62,7 @@ try{
             }
         }else{
 
-            $text1=$_POST['select9'];
+            $text1=$_GET['select9'];
 
             for($i=0;$i<count($text1);$i++) {
 
@@ -89,62 +89,62 @@ try{
 
     }
 
-    if(isset($_POST['select1'])){
+    if(isset($_GET['select1'])){
 
-        select($pdo,1,$_POST['select1']);
+        select($pdo,1,$_GET['select1']);
     }
 
 
-    if(isset($_POST['select2'])){
+    if(isset($_GET['select2'])){
 
-        select($pdo,2,$_POST['select2']);
-
-    }
-
-    if(isset($_POST['select3'])){
-
-        select($pdo,3,$_POST['select3']);
+        select($pdo,2,$_GET['select2']);
 
     }
 
-    if(isset($_POST['select4'])){
+    if(isset($_GET['select3'])){
 
-        select($pdo,4,$_POST['select4']);
-
-    }
-
-    if(isset($_POST['select5'])){
-
-        select($pdo,5,$_POST['select5']);
+        select($pdo,3,$_GET['select3']);
 
     }
 
-    if(isset($_POST['select6'])){
+    if(isset($_GET['select4'])){
 
-        select($pdo,6,$_POST['select6']);
-
-    }
-
-    if(isset($_POST['select7'])){
-
-        select($pdo,7,$_POST['select7']);
+        select($pdo,4,$_GET['select4']);
 
     }
 
-    if(isset($_POST['select8'])){
+    if(isset($_GET['select5'])){
 
-        select($pdo,8,$_POST['select8']);
+        select($pdo,5,$_GET['select5']);
 
     }
 
-    if(isset($_POST['select9'])){
+    if(isset($_GET['select6'])){
 
-        select($pdo,9,$_POST['select9']);
+        select($pdo,6,$_GET['select6']);
+
     }
 
-    if(isset($_POST['select10'])){
+    if(isset($_GET['select7'])){
 
-        select($pdo,10,$_POST['select10']);
+        select($pdo,7,$_GET['select7']);
+
+    }
+
+    if(isset($_GET['select8'])){
+
+        select($pdo,8,$_GET['select8']);
+
+    }
+
+    if(isset($_GET['select9'])){
+
+        select($pdo,9,$_GET['select9']);
+    }
+
+    if(isset($_GET['select10'])){
+
+        select($pdo,10,$_GET['select10']);
 
     }
 

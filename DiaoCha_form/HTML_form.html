@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--移动端网页必须加进去-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>app调查问卷</title>
+    <style>
+
+        #div h1{
+            text-align: center;
+
+        }
+
+        .p1:hover{
+            cursor: pointer;
+        }
+
+
+    </style>
+    <script>
+        window.onload = function(){
+
+            var arr_p = document.getElementsByClassName("p1");
+
+            for (var i = 0; i<arr_p.length; ++i){
+
+                (function(i){
+                    arr_p[i].onclick = function(){
+                        clickFun(arr_p[i]);
+                    }
+                })(i);
+
+
+            }
+
+            function clickFun(p){
+
+                for (var i = 0; i<arr_p.length; ++i){
+                    arr_p[i].nextElementSibling.style.display = "none";
+                }
+                var next = p.nextElementSibling;
+                next.style.display = "block";
+            }
+
+//            -----------------------------------------
+
+            var bool = true;
+            var input = null;
+            var j = 1;
+            var btn = document.getElementById("btn");
+
+            //判断所有题目中的选项是否有漏选的,如果有漏选阻止表单提交，并提示
+            function jugle(){
+
+                while (bool && j<=10){
+
+                    if (j==9){
+                        input = document.getElementsByName("select9[]");
+                    }else {
+                        input = document.getElementsByName("select"+j);
+                    }
+
+                    for(var k=0; k<input.length;++k){
+
+                        if (input[k].checked){//选中
+                            bool = true;
+                            break;
+                        }else {
+                            bool = false;
+                        }
+
+                    }
+
+                    ++j;
+                }
+
+                if (bool == false){
+                    event.preventDefault();//阻止表单提交
+                    alert("亲！您有未回答的题目！");
+                }
+            }
+
+            btn.onclick=function(){
+                jugle();
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div id="div">
+        <h1>关于大众服务平台的调查问卷</h1>
+        <p><b>说明：</b>这款免费的app主要提供三类服务：</p>
+        <p class="p1"><b>家教服务</b></p>
+        <p hidden="hidden">主要有两个方面，一方面觉得自己在某领域有能力的人可以到这个平台进行相关注册，成为家教；另一方面家长想要寻找家教可以直接登录这个平台就近寻找符合自己孩子的家庭教师。</p>
+        <p class="p1"><b>传统工艺</b></p>
+        <p hidden="hidden">主要为响应国家政策《中国传统工艺振兴计划》，随着时代的变迁，传统工艺已经逐渐失传，这款app的这项服务，应运而生，为传统工艺的师匠与传承者搭线。</p>
+        <p class="p1"><b>综合心理咨询</b></p>
+        <p hidden="hidden">生活中的各种烦恼均可以在这里寻找专家进行免费咨询，比如情感方面，心理方面，法律方面，生理方面等；如果有能力的人也可在这注册成为专家，月末年末会有好评率总结，成绩高者将会得到红包奖励。</p>
+
+        <h2>调查问卷</h2>
+        <form action="DiaoChaWenJuan_form.php" method="post" id="form">
+            <div>
+                <p>1.如果这款app注册含有私人信息您会在意吗？如身份证号，真实名字，真实地址等。</p>
+                <p><input type="radio" id="t1A" name="select1" value="在意"><label for="t1A">A.在意</label></p>
+                <p><input type="radio" id="t1B" name="select1" value="不在意"><label for="t1B">B.不在意</label></p>
+            </div>
+            <div>
+                <p>2.如果这款app会公布您的部分私人信息，如真实名字，真实地址，真实头像等，您会在意吗？</p>
+                <p><input type="radio" id="t2A" name="select2" value="在意"><label for="t2A">A.在意</label></p>
+                <p><input type="radio" id="t2B" name="select2" value="不在意"><label for="t2B">B.不在意</label></p>
+            </div>
+            <div>
+                <p>3.如果您有孩子想聘请家教，您会怎么选择？</p>
+                <p><input type="radio" id="t3A" name="select3" value="通过亲朋好友推荐"><label for="t3A">A.通过亲朋好友推荐</label><p>
+                <p><input type="radio" id="t3B" name="select3" value="想通过app查找"><label for="t3B">B.想通过app查找</label><p>
+            </div>
+            <div>
+                <p>4.您对传统工艺感兴趣吗？想找个师傅学习吗？</p>
+                <p><input type="radio" id="t4A" name="select4" value="不感兴趣"><label for="t4A">A.不感兴趣</label></p>
+                <p><input type="radio" id="t4B" name="select4" value="感兴趣，但不想学"><label for="t4B">B.感兴趣，但不想学</label></p>
+                <p><input type="radio" id="t4C" name="select4" value="感兴趣，想学"><label for="t4C">C.感兴趣，想学</label></p>
+            </div>
+            <div>
+                <p>5.遇到情感类，心里类或法律类或生理类的困扰您的选择是？</p>
+                <p><input type="radio" id="t5A" name="select5" value="去搜索引擎寻找帮助"><label for="t5A">A.去搜索引擎寻找帮助</label></p>
+                <p><input type="radio" id="t5B" name="select5" value="向家中的长辈寻找帮助"><label for="t5B">B.向家中的长辈寻找帮助</label></p>
+                <p><input type="radio" id="t5C" name="select5" value="直接询问专业人士的看法"><label for="t5C">C.直接询问专业人士的看法</label></p>
+            </div>
+            <div>
+                <p>6.如果您有空余时间又拥有海量的知识，您会去app注册家教吗？</p>
+                <p><input type="radio" id="t6A" name="select6" value="会"><label for="t6A">A.会</label></p>
+                <p><input type="radio" id="t6B" name="select6" value="不会"><label for="t6B">B.不会</label></p>
+            </div>
+            <div>
+                <p>7.如果您是拥有传统工艺的巨匠，想要找个传承者，您希望?</p>
+                <p><input type="radio" id="t7A" name="select7" value="从现实中去物色"><label for="t7A">A.从现实中去物色</label></p>
+                <p><input type="radio" id="t7B" name="select7" value="利用这款app海选"><label for="t7B">B.利用这款app海选</label></p>
+            </div>
+            <div>
+                <p>8.对于单方面的服务和集成类的服务平台，您有什么样的看法？</p>
+                <p><input type="radio" id="t8A" name="select8" value="喜欢单方面的，它们比较专业"><label for="t8A">A.喜欢单方面的，它们比较专业</label></p>
+                <p><input type="radio" id="t8B" name="select8" value="喜欢集成类的，拥有相关联的服务，放在一起更方便"><label for="t8B">B.喜欢集成类的，拥有相关联的服务，放在一起更方便</label></p>
+                <p><input type="radio" id="t8C" name="select8" value="看服务质量"><label for="t8C">C.看服务质量</label></p>
+            </div>
+            <div>
+                <p>9.如果这款产品即将上市，你关注哪项服务(多选)</p>
+                <p><input type="checkbox" id="t9A" value="家教" name="select9[]"><label for="t9A">A.家教</label></p>
+                <p><input type="checkbox" id="t9B" value="传统工艺" name="select9[]"><label for="t9B">B.传统工艺</label></p>
+                <p><input type="checkbox" id="t9C" value="综合咨询" name="select9[]"><label for="t9C">C.综合咨询</label></p>
+                <p><input type="checkbox" id="t9D" value="哪个都不关注不关注" name="select9[]"><label for="t9D">D.哪个都不关注不关注</label></p>
+            </div>
+            <div>
+                <p>10.如果这款产品即将上市，然而你不想下载的理由是：</p>
+                <p><input type="radio" id="t10A" name="select10" value="没有想要的服务"><label for="t10A">A.没有想要的服务</label></p>
+                <p><input type="radio" id="t10B" name="select10" value="不感兴趣"><label for="t10B">B.不感兴趣</label></p>
+                <p><input type="radio" id="t10C" name="select10" value="暂时用不到"><label for="t10C">C.暂时用不到</label></p>
+                <p><input type="radio" id="t10D" name="select10" value="没有内存可供下载"><label for="t10D">D.没有内存可供下载</label></p>
+                <p><input type="radio" id="t10E" name="select10" value="不，我想下载"><label for="t10E">E.不，我想下载</label></p>
+            </div>
+            <div>
+                <p><input id="btn" type="submit" value="提交"></p>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

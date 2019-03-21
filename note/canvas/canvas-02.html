@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../public/bootstrap.min.css">
+	<script type="text/javascript" src="../public/jquery-3.3.1.min.js"></script>
+	<!-- <script type="text/javascript" src="../bootstrap.min.js"></script> -->
+	<title>canvas——直线</title>
+	<style type="text/css">
+		.canvas{
+
+			border: 1px solid #333;
+			display: block;
+			margin: 0 auto;
+			
+		}
+	</style>
+</head>
+<body>
+	<h3 class="text-center">canvas——直线</h3>
+	<p class="lead">1.画一条直线</p>
+	<pre>
+		&lt;script type="text/javascript"&gt;
+
+			var canvas = document.getElementById('canvas');//获取画布对象
+
+			//设置宽高
+			canvas.width = 500;
+			canvas.height = 500;
+
+			var draw = canvas.getContext('2d');//获取2d绘画环境，2d 即是 平面
+
+			draw.beginPath();//创建路径，可以理解为拿起了一支画笔
+
+			draw.lineWidth = 5;//设置画笔的粗细，如果不设置默认为1px,现在设置为5px
+			draw.strokeStyle = "red";//设置画笔的颜色
+
+			draw.moveTo(100,100);//起始点，将笔头点在 距离左边100像素，距离顶部100像素的位置
+			draw.lineTo(100,300);//终止点，笔头从100,100 划至 100,300的位置
+
+			draw.closePath();//关闭路径，把笔扔掉
+			draw.stroke();//把画的路径显示出来
+
+		&lt;/script&gt;
+	</pre>
+	<canvas id="canvas" class="canvas">您的浏览器不支持canvas，请换一个！</canvas>
+
+	<script type="text/javascript">
+
+		var canvas = document.getElementById('canvas');//获取画布对象
+
+		//设置宽高
+		canvas.width = 500;
+		canvas.height = 500;
+
+		var draw = canvas.getContext('2d');//获取2d绘画环境，2d 即是 平面
+
+		draw.beginPath();//创建路径，可以理解为拿起了一支画笔
+
+		draw.lineWidth = 5;//设置画笔的粗细，如果不设置默认为1px,现在设置为5px
+		draw.strokeStyle = "red";//设置画笔的颜色
+
+		draw.moveTo(100,100);//起始点，将笔头点在 距离左边100像素，距离顶部100像素的位置
+		draw.lineTo(100,300);//终止点，笔头从100,100 划至 100,300的位置
+
+		draw.closePath();//关闭路径，把笔扔掉
+		draw.stroke();//把画的路径显示出来
+
+	</script>
+
+	<p class="lead">2.画多条直线</p>
+	<pre>
+		&lt;script type="text/javascript"&gt;
+
+			var canvas = document.getElementById('canvas2');//获取画布对象
+
+			//设置宽高
+			canvas.width = 500;
+			canvas.height = 500;
+
+			var draw = canvas.getContext('2d');//获取2d绘画环境，2d 即是 平面
+
+			draw.beginPath();//创建路径，可以理解为拿起了一支画笔
+			draw.moveTo(100,100);//起始点，将笔头点在 距离左边100像素，距离顶部100像素的位置
+			draw.lineTo(100,300);//终止点，笔头从100,100 划至 100,300的位置
+
+			//想要画多条直线，只要重复moveTo(x,y) lineTo(x,y)即可
+			draw.moveTo(300,100);
+			draw.lineTo(100,300);
+
+			draw.closePath();//关闭路径，把笔扔掉
+			draw.stroke();//把画的路径显示出来
+
+		&lt;/script&gt;
+	</pre>
+
+	<canvas id="canvas2" class="canvas">您的浏览器不支持canvas，请换一个！</canvas>
+	<script type="text/javascript">
+
+		var canvas = document.getElementById('canvas2');//获取画布对象
+
+		//设置宽高
+		canvas.width = 500;
+		canvas.height = 500;
+
+		var draw = canvas.getContext('2d');//获取2d绘画环境，2d 即是 平面
+
+		draw.beginPath();//创建路径，可以理解为拿起了一支画笔
+		draw.moveTo(100,100);//起始点，将笔头点在 距离左边100像素，距离顶部100像素的位置
+		draw.lineTo(100,300);//终止点，笔头从100,100 划至 100,300的位置
+
+		//想要画多条直线，只要重复moveTo(x,y) lineTo(x,y)即可
+		draw.moveTo(300,100);
+		draw.lineTo(100,300);
+
+		draw.closePath();//关闭路径，把笔扔掉
+		draw.stroke();//把画的路径显示出来
+
+	</script>
+	<p class="lead">3.重复moveTo(x,y) lineTo(x,y) 与 直接重复lineTo(x,y)的区别？ <mark style="color: red">路径会自动闭合</mark></p>
+	<pre>
+		&lt;script type="text/javascript"&gt;
+
+			var canvas = document.getElementById('canvas3');//获取画布对象
+
+			//设置宽高
+			canvas.width = 500;
+			canvas.height = 500;
+
+			var draw = canvas.getContext('2d');//获取2d绘画环境，2d 即是 平面
+
+			draw.beginPath();//创建路径，可以理解为拿起了一支画笔
+			draw.moveTo(100,100);//起始点，将笔头点在 距离左边100像素，距离顶部100像素的位置
+			draw.lineTo(100,300);//终止点，笔头从100,100 划至 100,300的位置
+
+			//想要画多条直线，只重复lineTo(x,y)
+			draw.lineTo(300,300);
+
+			draw.closePath();//关闭路径，把笔扔掉
+			draw.stroke();//把画的路径显示出来
+
+
+		&lt;/script&gt;
+	</pre>
+	<canvas id="canvas3" class="canvas">您的浏览器不支持canvas，请换一个！</canvas>
+		<script type="text/javascript">
+
+		var canvas = document.getElementById('canvas3');//获取画布对象
+
+		//设置宽高
+		canvas.width = 500;
+		canvas.height = 500;
+
+		var draw = canvas.getContext('2d');//获取2d绘画环境，2d 即是 平面
+
+		draw.beginPath();//创建路径，可以理解为拿起了一支画笔
+		draw.moveTo(100,100);//起始点，将笔头点在 距离左边100像素，距离顶部100像素的位置
+		draw.lineTo(100,300);//终止点，笔头从100,100 划至 100,300的位置
+
+		//想要画多条直线，只重复lineTo(x,y)
+		draw.lineTo(300,300);
+
+		draw.closePath();//关闭路径，把笔扔掉
+		draw.stroke();//把画的路径显示出来
+
+
+	</script>
+</body>
+</html>

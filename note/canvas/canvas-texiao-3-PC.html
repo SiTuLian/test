@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
+	<title>特效三-超简易画板</title>
+	<script type="text/javascript">
+		var userAgent = navigator.userAgent.toLowerCase();
+	    if(userAgent.match(/(iphone|ipod|ipad|android|blackberry|bb10|windows phone|tizen|bada)/)){
+	        
+	       var url = "canvas-texiao-3-Mobile.html";
+	        // 这里请修改到移动端站点的网址
+	        location.href = url;
+	    }
+	</script>
+
+	<style type="text/css">
+		
+		ul,li{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			width: 98%;
+			margin: 0 auto;
+		}
+		
+		li{
+			list-style: none;
+			display: inline-block;
+			margin-right: 20px;
+			width: 10%;
+			height: 50px;
+			text-align: center;
+			line-height: 50px;
+			margin-top: 20px;
+			color: #dfbff7;
+		}
+		li:nth-child(1){
+			background-color: #000;
+			margin-left: 3.5%;
+		}
+		
+		.color:nth-child(2){
+			background-color: red;
+		}
+		.color:nth-child(3){
+			background-color: orange;
+		}
+		.color:nth-child(4){
+			background-color: yellow;
+		}
+		.color:nth-child(5){
+			background-color: green;
+		}
+		.color:nth-child(6){
+			background-color: blue;
+		}
+		.color:nth-child(7){
+			background-color: blueviolet;
+		}
+		.color:nth-child(8){
+			background-color: violet;
+		}
+		li:hover{
+			box-shadow: 0 0 10px 10px pink;
+			cursor: pointer;
+		}
+		.size{
+			background-color: #000;
+			color: #fff;
+		}
+		button{
+			width: 96%;
+			margin: 0 auto;
+			display: block;
+			margin-left: 2.5%;
+			margin-top: 2%;
+		}
+		a{
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" height="300" style="border: 1px solid #333">您的浏览器不支持canvas！请换一个！</canvas>
+
+	<ul>
+		<li class="color">黑色</li>
+		<li class="color">红色</li>
+		<li class="color">橙色</li>
+		<li class="color">黄色</li>
+		<li class="color">绿色</li>
+		<li class="color">蓝色</li>
+		<li class="color">靛色</li>
+		<li class="color">紫色</li>
+	</ul>
+
+	<ul>
+		<li class="size">1</li>
+		<li class="size">2</li>
+		<li class="size">3</li>
+		<li class="size">4</li>
+		<li class="size">5</li>
+		<li class="size">6</li>
+		<li class="size">7</li>
+		<li class="size">8</li>
+	</ul>
+
+	<button id="btn">清空画布</button>
+	<button><a href="#" download="image1" id="a">下载图片</a></button>
+
+	<script type="text/javascript">
+
+
+		var canvas = document.getElementById('canvas');
+		var w = window.innerWidth-15;
+		canvas.width = w;
+		var draw = canvas.getContext('2d');
+		var color = "#000";
+		var size = 1;
+		const BORDER = "5px solid rgb(195, 195, 195)";
+		var li_color_arr = document.getElementsByClassName('color');
+		var li_size_arr = document.getElementsByClassName('size');
+
+		var img = "";
+
+		var a = document.getElementById('a');
+		var btn = document.getElementById('btn');
+
+
+
+		var color_object = {
+			"黑色":"#000",
+			"红色":"red",
+			"橙色":"orange",
+			"黄色":"yellow",
+			"绿色":"green",
+			"蓝色":"blue",
+			"靛色":"blueviolet",
+			"紫色":"violet"
+		}
+		var size_object = [1,2,3,4,5,6,7,8];
+		
+		
+		li_color_arr[0].style.border = BORDER;
+		li_size_arr[0].style.border = BORDER;
+
+		var This_color = li_color_arr[0];
+		var This_size = li_size_arr[0];
+
+		for(let i = 0; i<li_color_arr.length; ++i){
+
+			li_color_arr[i].onclick = function(e){
+
+				if (This_color) {
+					This_color.style.border = null;
+				}
+
+				var str = this.innerText;
+				color = color_object[str];
+				This_color = this;
+
+				this.style.border = BORDER;
+			
+
+			}
+		}
+
+		for(let i = 0; i<li_size_arr.length; ++i){
+			li_size_arr[i].onclick = function(e){
+
+				if (This_size) {
+					This_size.style.border = null;
+				}
+				
+				var str = this.innerText;
+				size = size_object[i];
+				console.log(size);
+				This_size = this;
+
+				this.style.border = BORDER;
+
+			}
+		}
+
+
+		class StraightLine{
+			
+			constructor(x,y){
+				this.x = x;
+				this.y = y;
+				this.lineWidth = 1;
+				this.Color = "#000";
+
+			}
+			drawLine(){
+
+				draw.beginPath();
+				draw.strokeStyle = this.Color;
+				draw.lineWidth = this.lineWidth;
+				draw.moveTo(this.x,this.y);
+
+				canvas.onmousemove = function(e){
+	                draw.lineTo(e.offsetX,e.offsetY);
+	                draw.stroke();
+
+				}
+				
+			}
+			
+
+		}
+
+		canvas.onmousedown = function(e){
+
+			var straightLine = new StraightLine(e.offsetX,e.offsetY);
+			straightLine.Color = color;
+			straightLine.lineWidth = size;
+			
+			straightLine.drawLine();
+
+		}
+		canvas.onmouseup = function(e){
+			this.onmousemove = null;
+			img = this.toDataURL('image/jpg');
+           
+
+		}
+
+		a.onclick = function(){
+			var bool = confirm("请问要下载图片吗");
+
+			if (bool) {
+				var name = prompt("请命名图片");
+				a.download = name;
+				a.href  = img;
+			}
+		}
+
+		btn.onclick = function(){
+			draw.clearRect(0,0,w,300);
+		}
+
+
+	</script>
+</body>
+</html>

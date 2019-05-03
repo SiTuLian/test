@@ -1,0 +1,64 @@
+#me{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    display: none;
+    
+}
+.me-mianban{
+    position: absolute;
+    width: 24%;
+    height: 70%;
+    left: 38%;
+    top: 10%;
+    background: #000;
+    color: #fff;
+    box-shadow: -6px 5px 9px #545454;
+
+}
+.me-close{
+    height: 8%;
+
+}
+.me-close-btn{
+    width: 10%;
+    height: 100%;
+    float: right;
+    color: #000;
+}
+.me-guanzhu{
+    height: 10%;
+
+    font-size: 1.7rem;
+    text-align: center;
+    
+}
+.me-xinximianban{
+    width: 70%;
+    margin: 4% auto;
+    height: 70%;
+
+}
+.me-xinximianban::before{
+    content: "";
+    display: table;
+}
+.me-touxiang{
+    width: 40%;
+    height: 35%;
+    margin: 4%;
+    
+}
+.me-p{
+   
+    height: 10%;
+    margin: 4% 0;
+    text-align: left;
+    
+    
+}
+.me-touxiang img{
+    height: 100%;
+}

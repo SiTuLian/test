@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
+    <script src="publicResources/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="publicResources/bootstrap.min.css">
+    <script src="JS/main.js"></script>
+    <link rel="stylesheet" href="CSS/public.css">
+    <link rel="stylesheet" href="CSS/main.css">
+    <script src="JS/public_music.js"></script>
+    <script src="JS/public_xiangce.js"></script>
+    <link rel="stylesheet" href="CSS/public_music.css">
+    <link rel="stylesheet" href="CSS/public_xiangce.css">
+    <link rel="stylesheet" href="CSS/bianjiblod.css">
+    <link rel="stylesheet" href="CSS/public_liulan.css">
+    <script src="JS/temp.js"></script>
+    <script src="JS/bianjiblod.js"></script>
+    <script src="JS/public_liulan.js"></script>
+    <link rel="stylesheet" href="CSS/me.css">
+    <script src="JS/me.js"></script>
+
+
+    <title>☆☆一方通行&最后之作☆☆ </title>
+</head>
+<body>
+    <h1 id="myh1" class="text-center">☆☆一方通行&最后之作☆☆ </h1>
+    <div class="dialog-box">
+        
+    </div>
+    <div id="main">
+        <div id="bianji" class="main-div lf" name="编辑博客">
+            <img src="img/main/diannao.png" alt="">
+        </div>
+        <div id="xiangece-div" class="main-div lf" name="相册">
+            <img src="img/main/xiangce.png" alt="">
+        </div>
+        <!-- <div class="main-div lf" name="相册编辑">
+            <img src="img/main/xiangji.png" alt="">
+        </div> -->
+        <div id="liulan" class="main-div lf" name="论坛">
+            <img src="img/main/liulan.png" alt="">
+        </div>
+        <div id="main-me" class="main-div lf" name="博主">
+            <img src="img/main/me.png" alt="">
+        </div>
+        <div id="yinyue" class="main-div lf" name="音乐">
+            <img src="img/main/yinyue.png" alt="">
+        </div>
+        <!-- <div class="main-div lf" name="回收站">
+            <img src="img/main/kongzhixiang.png" alt="">
+        </div> -->
+        
+    </div>
+    <!-- 音乐盒 -->
+    <div id="music-div">
+        <div id="music">
+            <div class="header">
+                <div class="img weizhi">
+                    <img src="img/main/yinyue_logo.png" alt="">
+                </div>
+                <div class="mus-close weizhi">
+                    X
+                </div>
+            </div>
+            <div class="gequlist">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <td>序号</td>
+                            <td>歌曲名称</td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <audio id="audio" src="audio/audio_1.mp3" autoplay></audio>
+        </div>
+    </div>
+    
+    <!-- 相册 -->
+    <div id="xiangce">
+        <div class="xiangcefengmian lf">
+            <div class="xiangce-image">
+                <img src="img/main/xiangcefengmian.png" alt="">
+            </div>
+            <div class="xiangce-name">
+                动漫人物
+            </div>
+        </div>
+        
+        <div class="footclose">
+            关闭
+        </div>
+
+        <div class="fanye-div">
+            
+            <div class="bookweizhi">
+                <div class="bookpage odd-number runPage first">
+                    <img src="img/album/艾特斯.png" alt="">
+                   
+                    
+                </div>
+
+                <div class="bookpage even-number runPage">
+                    <div class="introduce" >
+                        <h2 class="role-name">艾斯特</h2>
+                        <p class="role-sex">性别：女</p>
+                        <p class="rote-content">
+                            外表是一个银发玉肌的萝莉型美少女，经常主动的只穿一双过膝黑色丝袜与神人陪睡，自己将之称为侍寝。不具人类的羞耻观，对裸露身体毫不在意，唯独会排斥露出脚踵而羞涩，对于不穿袜子或穿短袜异常害羞。
+                        </p>
+                    </div>
+                    <div class="role-img  " >
+                        <img src="img/album/大门大.png" alt="">
+                    </div>
+                </div>
+
+                <div class="bookpage even-number runPage " style="z-index: 2998">
+                    <div class="introduce" >
+                        <h2 class="role-name">大门大</h2>
+                        <p class="role-sex">性别：男</p>
+                        <p class="rote-content">
+                            一位初中学生，非常喜欢打架及挑战强劲的对手，打架纪录200胜没有任何败仗的打架高手。
+                        </p>
+                    </div>
+                    <div class="role-img " >
+                        <img src="img/album/美食的俘虏阿虏.png" alt="">
+                    </div>
+                </div>
+
+                <div class="bookpage even-number runPage " > 
+                    <div class="introduce" >
+                        <h2 class="role-name">阿虏</h2>
+                        <p class="role-sex">性别：男</p>
+                        <p class="rote-content">
+                            美食四天王之一，体内罕见的有三个美食恶魔。阿虏是个超级大食客兼大酒豪，可以轻松吃下超过一百人份的餐点，一口气饮下酒精浓度高（83%以上）的夏日威士忌。其搭档为小松。
+                        </p>
+                    </div>
+                    <div class="role-img " >
+                        <img src="img/album/斯摩格.png" alt="">
+                    </div>
+                </div>
+
+                <div class="bookpage even-number runPage " > 
+                        <div class="introduce" >
+                            <h2 class="role-name">斯摩格</h2>
+                            <p class="role-sex">性别：男</p>
+                            <p class="rote-content">
+                                    原海军本部上校，现海军G-5支部中将，全身可以随意变成烟雾，烟雾可实体化、困住敌人。在经历“阿拉巴斯坦事件”事件后，政府为了掩盖其无能，升为准将。海军本部顶上战争结束后，为离目标蒙奇·D·路飞更近一步，斯摩格主动申请调到位于新世界的唯一分部-G5分部，曾是原海军大将泽法的学生。
+                            </p>
+                        </div>
+                        <div class="role-img " >
+                            <img src="img/album/wang_image.png" alt="">
+                        </div>
+                    </div>
+                
+            </div>
+            <div class="btnline">
+                <div id="lastbtn" class="albun-btn lf">上一张</div>
+                <div id="closebtn" class="albun-btn lf">合上相册</div>
+                <div id="nextbtn" class="albun-btn lf">下一张</div>
+            </div>
+        </div>
+        <div class="tishikuan" id="tsk">
+            <p id="tishi-p"></p>
+            <p id="tishi-btn">确定</p>
+        </div>
+    </div>
+
+    <!-- 编辑博客 -->
+    <div id="bianjiboke">
+        <div id="top-caozuo">
+            <button id="btn-X">X</button>
+            
+        </div>
+        <div id="gongzuotai">
+            <div id="left-caozuo" class="lf">
+                <ul>
+                    <li id="erciyuan" >二次元间</li>
+                    <li id="houtai">后台管理</li>
+                </ul>
+            </div>
+            <div class="dongman container lf">
+
+                <form id="form" action="" method="POST">
+                    <div class="row">
+                        <div class="col-lg-2 text-right">标题：</div>
+                        <div class="col-lg-10"><input id="form-input" type="text" name="title"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 text-right">内容：</div>
+                        <div class="col-lg-10"><textarea name="content" id="form-textarea" cols="30" rows="10"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 text-right"></div>
+                        <div class="col-lg-10"><button id="submit">发布</button></div>
+                    </div>                         
+                </form>
+            </div>
+
+            <div class="houtaiguanli lf">
+                
+                <table id="houtaiguanli-table" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>序号</td>
+                            <td>标题</td>
+                            <td>内容</td>
+                            <td>时间</td>
+                            <td>操作</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 浏览帖子 -->
+    <div id="liulantiezi">
+        <div class="liulanban">
+            
+        </div>
+        <div class="liulantiezi-close">
+            关闭
+        </div>
+    </div>
+
+    <div id="me">
+        <div class="me-mianban">
+            <div class="me-close">
+                <button class="me-close-btn">X</button>
+            </div>
+            <div class="me-guanzhu">
+                关注：∞
+            </div>
+            <div class="me-xinximianban">
+                <div class="me-touxiang">
+                    <img src="img/main/me_image.png" alt="">
+                </div>
+                <p class="me-p">
+                    博主：☆☆一方通行&最后之作☆☆ 
+                </p>
+                <p class="me-p">
+                    性别：男
+                </p>
+                <p class="me-p">
+                    军团：FFF团员
+                </p>
+                <p class="me-p">
+                    兴趣：二次元
+                </p>
+            </div>
+            
+        </div>
+        
+    </div>
+</body>
+</html>

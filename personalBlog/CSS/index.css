@@ -1,0 +1,198 @@
+body,div,h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+ 
+    height: 100%;
+}
+html{
+    font-size: 12px;
+}
+
+body{
+    background:url(../img/index/newbg.jpg) center center no-repeat; 
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    color: #ffffff;
+    font-family: 'KaiTi';
+    max-width: 1920px;
+    min-width: 1300px;
+    min-height: 600px;
+
+}
+@font-face{
+    font-family: 'KaiTi';
+    src: url(../font/simkai.ttf);
+    /* font-family: "fenbi";
+    src: url(../font/KG\ Broken\ Vessels\ Sketch.ttf); */
+}
+.lf{
+    float: left;
+}
+
+#leimu{
+    left: 7.75%;
+}
+#lamu{
+    right: -25.5%;
+}
+.nvpu{
+    width: 20%;
+    height: 100%;
+    position: relative;
+    
+}
+.nvpu img{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+#index{
+    width: 25%;
+    height: 100%;
+    position: relative;
+    left: 15.5%;
+}
+#index::before{
+    content: "";
+    display: table;
+}
+#index .gif{
+    clear: both;
+    height: 37%;
+
+    margin: 10%;
+}
+#index .gif img{
+    
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+}
+#index .lay-p{
+    clear: both;
+    text-align: center;
+    font-size: 2rem;
+    width: 80%;
+    margin: 0 auto;
+}
+#index .lay-p:hover{
+    cursor: pointer;
+    color: rgb(255, 148, 175);
+}
+.appearance{
+    background-color: #7e7e7e6b;
+}
+.announcement-lay{
+    width: 50%;
+    height: 30%;
+    position: absolute;
+    bottom: 5%;
+    left: 25%;
+    font-size: 2rem;
+    opacity: 0;
+ 
+    
+}
+.indent{
+    text-indent: 2em;
+}
+h2{
+    text-align: center;
+    margin-top: 10%;
+}
+#muban{
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    z-index: 10;
+    display: none;
+}
+#diaopai{
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    background: url(../img/index/diaoPai.png) center top no-repeat; 
+    background-size: 100%;
+}
+#diaopai::before{
+    content: "";
+    display: table;
+}
+#diaopai .content{
+    width: 82%;
+    height: 59%;
+    /* background-color: #333; */
+    margin: 0 auto;
+    margin-top: 31.5%;
+    /* font-family: "fenbi"; */
+    font-size: 2rem;
+    color: #000;
+}
+#diaopai .content h2{
+    text-align: left;
+}
+#diaopai .content span{
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 2%;
+}
+#diaopai .content span:hover{
+    cursor: pointer;
+    background-color: rgb(255, 155, 97);
+    color: #fff;
+}
+#muban-close{
+   
+    margin-top: 40%;
+    text-align: center;
+}
+#muban-close:hover{
+    cursor: pointer;
+    color: rgb(255, 155, 97);
+}
+
+/* 模态框 */
+#model{
+    position: absolute;
+    width: 28%;
+    height: 25%;
+    background-color: #8282827a;
+    z-index: 100;
+    top: 32.5%;
+    left: 36%;
+    font-size: 2rem;
+    display: none;
+}
+#model p{
+    margin: 0;
+    padding: 0;
+}
+#model span{
+    margin-left: 92%;
+    padding-right: 2%;
+
+}
+#model span:hover{
+    color: rgb(255, 67, 67);
+    cursor: pointer;
+}
+#model form{
+    /* background-color: #000; */
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2%;
+}
+#model form table{
+    margin-top: 8%;
+    width: 100%;
+}
+#model form table td{
+    text-align: center;
+}
+#model form table td:hover{
+    color: rgb(255, 67, 67);
+    cursor: pointer;
+}

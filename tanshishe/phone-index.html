@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html{
+			font-size: 16px;
+		}
+		body,html{
+			width: 100%;
+			height: 100%;
+		}
+		body{
+			position: relative;
+		}
+		
+
+		canvas{
+			display: block;
+			margin: 0 auto;
+			width: 100%;
+			
+		}
+		button{
+			position: absolute;
+			width: 20%;
+			height: 10%;
+			border-radius: 20px;
+			top: 45%;
+			left: 40%;
+		}
+		.fx{
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+		#fangxiang{
+			width: 150px;
+			height: 150px;
+			margin: 0 auto;
+			
+			opacity: 0.3;
+		}
+		.hang{
+			height: 50px;
+			width: 150px;
+
+		}
+		#hang1{
+			display: flex;
+			justify-content: center;
+		}
+		#hang2{
+			display: flex;
+			justify-content: space-between;
+		}
+		#hang3{
+			display: flex;
+			justify-content: center;
+		}
+		.kuai-div{
+			width: 50px;
+			height: 50px;
+			background-color: #000;
+			font-size: 2rem;
+			line-height: 50px;
+			text-align: center;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas">您的浏览器不支持画布</canvas>
+	
+	
+	<button id="btn">开始游戏</button>
+	<div class="fx">
+		<div id="fangxiang">
+			<div id="hang1" class="hang">
+				<div id="shang" class="kuai-div">上</div>
+			</div>
+			<div id="hang2" class="hang">
+				<div id="zuo" class="kuai-div">左</div>
+				<div id="you" class="kuai-div">右</div>
+			</div>
+			<div id="hang3" class="hang">
+				<div id="xia" class="kuai-div">下</div>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	<script type="text/javascript">
+
+		
+	    let height = window.screen.availHeight;
+	    let width = window.screen.availWidth;
+
+	   
+		height = parseInt(height/20);
+	    width = parseInt(width/20);
+
+	    height = height *20;
+	    width =  width*20; 
+	    
+	    console.log("height",height,"width",width);
+
+		let canvas = document.getElementById('canvas');
+		let div = document.getElementById('div');
+		let btn = document.getElementById('btn');
+
+		let shang = document.getElementById('shang');
+		let zuo = document.getElementById('zuo');
+		let you = document.getElementById('you');
+		let xia = document.getElementById('xia');
+
+
+		let fenshu = 0;
+		canvas.width = width;
+		canvas.height = height;
+		// canvas.style.width = width;
+		// canvas.style.height = height;
+		canvas.style.background = "#ccc";
+
+		let foodTimer = null;
+
+		let draw = canvas.getContext('2d');
+
+		
+		let timer = null;
+
+		function Snake(options) {
+			this.width = options.width;
+			this.height = options.height;
+			this.space = options.space;
+			this.colCount = this.width/this.space;
+			this.rowCount = this.height/this.space;
+			this.draw = options.draw;
+			this.num = options.num;
+			this.direction = options.direction;
+			
+			this.x = Math.floor(Math.random()*this.colCount)*this.space;
+			this.y = Math.floor(Math.random()*this.rowCount)*this.space;
+			this.foodColor = 'red';
+
+
+			this.snake = [
+				{
+					x:0,
+					y:80,
+					color:'blue'
+				},
+				{
+					x:20,
+					y:80,
+					color:'blue'
+				},
+				{
+					x:40,
+					y:80,
+					color:'blue'
+				},
+				{
+					x:60,
+					y:80,
+					color:'green'
+				}
+			]
+		}
+
+		Snake.prototype.drawMap = function(){
+			this.draw.strokeStyle = '#111';
+
+			for(let i = 0; i<=this.colCount; ++i){
+
+				// this.draw.moveTo(0,i*this.space);
+				// this.draw.lineTo(this.width,i*this.space);
+
+				this.draw.moveTo(i*this.space,0);
+				this.draw.lineTo(i*this.space,this.height);
+				
+				this.draw.stroke();
+			}
+
+			for(let i = 0; i<=this.rowCount; ++i){
+
+				this.draw.moveTo(0,i*this.space);
+				this.draw.lineTo(this.width,i*this.space);
+
+				// this.draw.moveTo(i*this.space,0);
+				// this.draw.lineTo(i*this.space,this.height);
+				
+				this.draw.stroke();
+			}
+
+		}
+
+
+		Snake.prototype.drawFood = function(){
+
+			
+
+			this.draw.beginPath();
+
+			this.draw.rect(this.x,this.y,this.space,this.space);
+			this.draw.fillStyle = this.foodColor;
+			this.draw.fill();
+
+
+		}
+
+		Snake.prototype.drawInitSnake = function(){
+			
+
+			
+
+			for(let i = 0; i<this.snake.length; ++i){
+				this.draw.beginPath();
+				this.draw.rect(this.snake[i].x,this.snake[i].y,this.space,this.space);
+				this.draw.fillStyle = this.snake[i].color;
+				this.draw.fill();
+			}
+			
+		}
+
+		
+
+		Snake.prototype.move = function(firstX,firstY,firstColor){
+
+			if(firstX<0){
+				clearInterval(timer);
+				clearInterval(foodTimer);
+				alert("游戏结束,您的得分为"+fenshu);
+			}
+			if(firstX>this.width){
+				clearInterval(timer);
+				clearInterval(foodTimer);
+				alert("游戏结束,您的得分为"+fenshu);
+			}
+			if(firstY<0){
+				clearInterval(timer);
+				clearInterval(foodTimer);
+				alert("游戏结束,您的得分为"+fenshu);
+			}
+			if(firstY>this.height){
+				clearInterval(timer);
+				clearInterval(foodTimer);
+				alert("游戏结束,您的得分为"+fenshu);
+			}
+
+			for(let i = 0; i<this.snake.length; ++i){
+
+				if(i == this.snake.length - 1){
+					
+					this.snake[i].x = firstX;
+					this.snake[i].y = firstY;
+					this.snake[i].color = firstColor;
+				}else{
+					
+					this.snake[i].x = this.snake[i+1].x;
+					this.snake[i].y = this.snake[i+1].y;
+					this.snake[i].color = this.snake[0].color;
+				}
+				
+			}
+		}
+
+		Snake.prototype.eatziji = function(firstX,firstY){
+			for(let i = 0; i<this.snake.length; ++i){
+				if(firstX == this.snake[i].x && firstY == this.snake[i].y){
+					
+					clearInterval(timer);
+					clearInterval(foodTimer);
+					alert("游戏结束,您的得分为"+fenshu);
+
+					break;
+				}
+			}
+		}
+
+		Snake.prototype.walking = function(){
+
+			if(this.direction == 'up'){
+
+				let firstX = this.snake[this.snake.length - 1].x;
+				let firstY = this.snake[this.snake.length - 1].y - this.space;
+				let firstColor = this.snake[this.snake.length - 1].color;
+
+				this.eatziji(firstX,firstY);
+				this.move(firstX,firstY,firstColor);
+			}
+			if(this.direction == 'down'){
+				let firstX = this.snake[this.snake.length - 1].x;
+				let firstY = this.snake[this.snake.length - 1].y + this.space;
+				let firstColor = this.snake[this.snake.length - 1].color;
+
+				this.eatziji(firstX,firstY);
+				this.move(firstX,firstY,firstColor);
+			}
+			if(this.direction == 'left'){
+				let firstX = this.snake[this.snake.length - 1].x - this.space;
+				let firstY = this.snake[this.snake.length - 1].y;
+				let firstColor = this.snake[this.snake.length - 1].color;
+
+				this.eatziji(firstX,firstY);
+				this.move(firstX,firstY,firstColor);
+			}
+			if(this.direction == 'right'){
+				let firstX = this.snake[this.snake.length - 1].x + this.space;
+				let firstY = this.snake[this.snake.length - 1].y;
+				let firstColor = this.snake[this.snake.length - 1].color;
+
+				this.eatziji(firstX,firstY);
+				this.move(firstX,firstY,firstColor);
+			}
+
+		}
+
+	
+
+
+		Snake.prototype.init = function(){
+			this.drawMap();
+			
+			this.drawFood();
+			this.drawInitSnake();
+
+			this.eat();
+	
+			
+		}
+
+
+
+		Snake.prototype.eat = function(){
+
+			let firstX = this.snake[this.snake.length - 1].x;
+			let firstY = this.snake[this.snake.length - 1].y;
+
+			if(firstX == this.x && firstY == this.y){
+				let obj = {
+					x:this.x,
+					y:this.y,
+					color:'blue'
+				}
+				this.snake.unshift(obj);
+
+
+				draw.clearRect(0,0,map.width,map.height);
+				map.x = Math.floor(Math.random()*map.colCount)*map.space;
+				map.y = Math.floor(Math.random()*map.rowCount)*map.space;
+
+				// if(foodTimer){
+				// 	clearInterval(foodTimer);
+				// 	foodTimer = null;
+				// }
+
+				this.drawMap();
+				this.drawFood();
+				this.walking();
+				this.drawInitSnake();
+
+				// foodTimer = setInterval(foodTime,9999);
+
+				++fenshu;
+
+				
+
+				
+				
+
+			}
+			
+		}
+
+
+		
+		
+
+		let map = new Snake({
+			width:canvas.width,
+			height:canvas.height,
+			space:20,
+			draw:draw,
+			direction:'right',
+			num:68
+		});
+
+		map.init();
+
+		function SnakeTime(){
+
+			draw.clearRect(0,0,map.width,map.height);
+
+				map.drawMap();
+				map.drawFood();
+				map.walking();
+				map.drawInitSnake();
+				map.eat();
+		}
+
+		
+		function foodTime(){
+
+			
+
+			draw.clearRect(map.x,map.y,map.space,map.space);
+
+			map.x = Math.floor(Math.random()*map.colCount)*map.space;
+			map.y = Math.floor(Math.random()*map.rowCount)*map.space;
+			
+			
+			
+			
+			map.drawFood();
+		}
+
+
+
+		 // timer = setInterval(SnakeTime,200);
+		 // foodTimer = setInterval(foodTime,9999);
+
+		 btn.onclick = function(){
+		 	if(timer){
+		 		clearInterval(timer);
+		 		timer = null;
+		 	}
+		 	btn.style.display = "none";
+		 	timer = setInterval(SnakeTime,200);
+		 }
+
+
+		//  window.onkeydown = function(e){
+		// 	/*
+		// 		w == 87;
+		// 		s == 83;
+		// 		a == 65;
+		// 		d == 68;
+		// 	*/
+		// 	if(map.num == 87 &&　e.keyCode == 83){
+		// 		alert("我吃我自己！");
+		// 		clearInterval(timer);
+		// 		clearInterval(foodTimer);
+
+		// 		return ;
+		// 	}
+
+		// 	if(map.num == 83 &&　e.keyCode == 87){
+		// 		alert("我吃我自己！");
+		// 		clearInterval(timer);
+		// 		clearInterval(foodTimer);
+
+		// 		return ;
+		// 	}
+
+		// 	if(map.num == 65 &&　e.keyCode == 68){
+		// 		alert("我吃我自己！");
+		// 		clearInterval(timer);
+		// 		clearInterval(foodTimer);
+
+		// 		return ;
+		// 	}
+
+		// 	if(map.num == 68 &&　e.keyCode == 65){
+		// 		alert("我吃我自己！");
+		// 		clearInterval(timer);
+		// 		clearInterval(foodTimer);
+
+		// 		return ;
+		// 	}
+
+
+		// 	if(e.keyCode == 87){
+		// 		map.direction = 'up';
+		// 		map.num = 87;
+		// 	}
+		// 	if(e.keyCode == 83){
+		// 		map.direction = 'down';
+		// 		map.num = 83;
+		// 	}
+		// 	if(e.keyCode == 65){
+		// 		map.direction = 'left';
+		// 		map.num = 65;
+		// 	}
+		// 	if(e.keyCode == 68){
+		// 		map.direction = 'right';
+		// 		map.num = 68;
+		// 	}
+		// }
+
+
+		shang.onclick = function(){
+			if(map.num == 83){
+				alert("游戏结束,您的得分为"+fenshu);
+				clearInterval(timer);
+				clearInterval(foodTimer);
+
+				return ;
+			}
+
+			map.direction = 'up';
+			map.num = 87;
+		}
+
+		xia.onclick = function(){
+			if(map.num == 87){
+				alert("游戏结束,您的得分为"+fenshu);
+				clearInterval(timer);
+				clearInterval(foodTimer);
+
+				return ;
+			}
+
+			map.direction = 'down';
+			map.num = 83;
+		}
+
+		zuo.onclick = function(){
+			if(map.num == 68){
+				alert("游戏结束,您的得分为"+fenshu);
+				clearInterval(timer);
+				clearInterval(foodTimer);
+
+				return ;
+			}
+
+			map.direction = 'left';
+			map.num = 65;
+		}
+
+		you.onclick = function(){
+			if(map.num == 65){
+				alert("游戏结束,您的得分为"+fenshu);
+				clearInterval(timer);
+				clearInterval(foodTimer);
+
+				return ;
+			}
+
+			map.direction = 'right';
+			map.num = 68;
+		}
+
+	</script>
+</body>
+</html>

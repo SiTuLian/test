@@ -421,14 +421,22 @@ $(function(){
             },200)
 
 
+            let sum = parseInt(Math.random()*100);
+
+            if(sum%5 == 0){
+                block.num = 4;
+                block.viewNum($div,4);
+                block.setBgColor($div,blockColor[1].color);
+            }else{
+                block.viewNum($div,2);
+                block.setBgColor($div,blockColor[0].color);
+            }
            
-            block.viewNum($div,2);
-            block.setBgColor($div,blockColor[0].color);
+            
 
             
             
-            
-            // let index = ((block.x-1) * 4 + block.y) - 1;
+          
             let index = ((obj.x-1) * 4 + obj.y) - 1;
             blockArr[index].block = block;
             blockArr[index].note = $div;

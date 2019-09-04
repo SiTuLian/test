@@ -1,0 +1,45 @@
+.box {
+  margin: 1rem auto;
+  height: 3.2rem;
+  width: 3.2rem;
+  background: #bf872a;
+  position: relative;
+  border: 6px solid rgba(219, 133, 35, 0.925);
+}
+.box .div-position {
+  width: 0.7rem;
+  height: 0.7rem;
+  position: absolute;
+  background: #f8bc5c;
+}
+.box .box-child {
+  position: absolute;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: transparent;
+  font-size: 0.3rem;
+  line-height: 0.7rem;
+  text-align: center;
+}
+.gameOver {
+  display: none;
+  position: absolute;
+  top: -0.2rem;
+  width: 96%;
+  left: 2%;
+  height: 3.6rem;
+  background: rgba(0, 0, 0, 0.5);
+}
+.gameOver p {
+  margin-top: 1rem;
+  font-size: 0.5rem;
+  text-align: center;
+}
+.gameOver div {
+  font-size: 0.4rem;
+  height: 16%;
+  width: 60%;
+  background: #ec7c7c;
+  margin: 0.2rem auto;
+  text-align: center;
+}

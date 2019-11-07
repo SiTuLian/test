@@ -1,0 +1,70 @@
+@import 'minx.less';
+
+@bgColor:#ccc;
+@w:percentage(1);
+@h:percentage(1);
+
+html,body{
+    .width_and_height();
+}
+//.bgImg(@bgURL,@bgRepeat); @bgURL 背景图片的url，@bgRepeat 背景图片是否重复
+// .width_and_height();  高度与宽度都为100%
+#index-box{
+    position: relative;
+    .bgImg(url('../images/startgame.png'),no-repeat);
+    .width_and_height();
+
+    button{
+        position: absolute;
+        width: 50%;
+        height: 0.03rem;
+        left: 25%;
+        top:80%;
+        background: @bgColor;
+    }
+}
+#main-box{
+    .gameView();
+
+    .plane{
+        position: absolute;
+        width: 60px;
+        height: 80px;
+        .bgImg(url(../images/plane.gif),no-repeat);
+        bottom: 10%;
+        left: calc(~"(100% - 60px)/2");
+        z-index: 10;
+    }
+
+    .show-header{
+        width: @w;
+
+        position: absolute;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span{
+            font-size: 0.015rem;
+            
+        }
+    }
+
+    
+
+}
+
+#game-over{
+    .gameView();
+ 
+    
+    p{
+        
+        font-size: 0.02rem;
+        text-align: center;
+        margin-top: 0.18rem;
+       
+    }
+}

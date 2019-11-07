@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.width_and_height(){
+    width: @w;
+    height: @h;
+}
+
+.bgImg(@bgURL,@bgRepeat){
+    background: @bgURL @bgRepeat;
+    background-size: @w @h;
+}
+.gameView(){
+    position: relative;
+    .width_and_height();
+    .bgImg(url(../images/bg.png),repeat);
+    display: none;
+    overflow: hidden;
+}
